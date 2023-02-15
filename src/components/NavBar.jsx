@@ -6,6 +6,7 @@ import navIcon2 from "../assets/img/nav-icon2.svg";
 import { BrowserRouter as Router } from "react-router-dom";
 import fileDownload from "js-file-download";
 import axios from "axios";
+import analyticsEventTracker from "../utils/Analytics";
 
 const NavBar = () => {
   const [activeLink, setActiveLink] = useState("home");
@@ -13,6 +14,7 @@ const NavBar = () => {
   const url = `${window.location.origin.toString()}/Anirban_Chakraborty_Resume.pdf`;
   const fileName = "CV.pdf";
   const handleDownload = async () => {
+    analyticsEventTracker("CV download", "CVDownloadOnClick", "CV download");
     console.log();
     const res = await axios.get(url, {
       responseType: "blob",
@@ -56,7 +58,10 @@ const NavBar = () => {
                 className={
                   activeLink === "home" ? "active navbar-link" : "navbar-link"
                 }
-                onClick={() => onUpdateActiveLink("home")}
+                onClick={() => {
+                  onUpdateActiveLink("home");
+                  analyticsEventTracker("home", "homeOnClick", "Home");
+                }}
               >
                 Home
               </Nav.Link>
@@ -65,7 +70,14 @@ const NavBar = () => {
                 className={
                   activeLink === "skills" ? "active navbar-link" : "navbar-link"
                 }
-                onClick={() => onUpdateActiveLink("skills")}
+                onClick={() => {
+                  onUpdateActiveLink("skills");
+                  analyticsEventTracker(
+                    "On Click Skills",
+                    "OnClickSkills",
+                    "Skills on Click"
+                  );
+                }}
               >
                 Skills
               </Nav.Link>
@@ -74,7 +86,14 @@ const NavBar = () => {
                 className={
                   activeLink === "about" ? "active navbar-link" : "navbar-link"
                 }
-                onClick={() => onUpdateActiveLink("about")}
+                onClick={() => {
+                  onUpdateActiveLink("about");
+                  analyticsEventTracker(
+                    "On Click About",
+                    "OnClickAbout",
+                    "About on Click"
+                  );
+                }}
               >
                 About
               </Nav.Link>
@@ -82,6 +101,13 @@ const NavBar = () => {
             <span className="navbar-text">
               <div className="social-icon">
                 <a
+                  onClick={() => {
+                    analyticsEventTracker(
+                      "linkedIn seen",
+                      "OnClickLinkedIn",
+                      "LinkedIn on Click"
+                    );
+                  }}
                   rel="noreferrer"
                   target="_blank"
                   href="https://www.linkedin.com/in/anirbanc17/"
@@ -89,6 +115,13 @@ const NavBar = () => {
                   <img src={navIcon1} alt="" />
                 </a>
                 <a
+                  onClick={() => {
+                    analyticsEventTracker(
+                      "Github seen",
+                      "OnClickGithub",
+                      "Github on Click"
+                    );
+                  }}
                   rel="noreferrer"
                   target="_blank"
                   href="https://github.com/canirban"

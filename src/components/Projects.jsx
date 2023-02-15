@@ -12,6 +12,7 @@ import { BsBriefcaseFill, BsCardChecklist } from "react-icons/bs";
 import { BiBookOpen } from "react-icons/bi";
 import { FaLocationArrow } from "react-icons/fa";
 import { GiSandsOfTime } from "react-icons/gi";
+import analyticsEventTracker from "../utils/Analytics";
 
 export const Projects = () => {
   const projects = [
@@ -77,19 +78,46 @@ export const Projects = () => {
                       id="pills-tab"
                     >
                       <Nav.Item>
-                        <Nav.Link eventKey="first">
+                        <Nav.Link
+                          onClick={() => {
+                            analyticsEventTracker(
+                              "Projects seen",
+                              "OnClickProjects",
+                              "Projects on Click"
+                            );
+                          }}
+                          eventKey="first"
+                        >
                           <BsCardChecklist />{" "}
                           <span className="info">Projects</span>
                         </Nav.Link>
                       </Nav.Item>
                       <Nav.Item>
-                        <Nav.Link eventKey="second">
+                        <Nav.Link
+                          onClick={() => {
+                            analyticsEventTracker(
+                              "Experience seen",
+                              "OnClickExperience",
+                              "Experience on Click"
+                            );
+                          }}
+                          eventKey="second"
+                        >
                           <BsBriefcaseFill />{" "}
                           <span className="info">Experience</span>
                         </Nav.Link>
                       </Nav.Item>
                       <Nav.Item>
-                        <Nav.Link eventKey="third">
+                        <Nav.Link
+                          onClick={() => {
+                            analyticsEventTracker(
+                              "Education seen",
+                              "OnClickEducation",
+                              "Education on Click"
+                            );
+                          }}
+                          eventKey="third"
+                        >
                           <BiBookOpen /> <span className="info">Education</span>
                         </Nav.Link>
                       </Nav.Item>

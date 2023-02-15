@@ -6,7 +6,7 @@ import { Skills } from "./components/Skills";
 import { Projects } from "./components/Projects";
 import { Footer } from "./components/Footer";
 import { useEffect } from "react";
-import TagManager from "react-gtm-module";
+import ReactGA4 from "react-ga4";
 
 function App() {
   useEffect(() => {
@@ -16,7 +16,7 @@ function App() {
     );
   });
   useEffect(() => {
-    TagManager.initialize({ gtmId: "GTM-MTCTZZW" });
+    ReactGA4.initialize("G-YH86YG70L7");
   }, []);
   return (
     <div className="App">
